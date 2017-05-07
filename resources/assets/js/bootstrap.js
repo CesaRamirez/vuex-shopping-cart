@@ -1,6 +1,5 @@
 import lodash from 'lodash';
 import axios from 'axios';
-import Vuex from 'vuex';
 
 window._ = lodash;
 window.axios = axios;

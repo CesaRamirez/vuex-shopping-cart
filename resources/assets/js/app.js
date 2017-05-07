@@ -1,10 +1,17 @@
 import './bootstrap';
 import Vue from 'vue';
+import Vuex from 'vuex';
+import store from './store';
+import App from './App';
 
 window.Vue = Vue;
+window.Vuex = Vuex;
 
-Vue.use(Vuex);
+Vue.config.productionTip = false;
 
-const app = new Vue({
-    el: '#app'
+new Vue({
+    el: '#app',
+    store,
+    template: '<App/>',
+    components: { App }
 });
