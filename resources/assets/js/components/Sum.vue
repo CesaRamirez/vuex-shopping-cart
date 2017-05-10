@@ -5,23 +5,25 @@
             <div class="title m-b-md">
                 {{ sum }}                
             </div>
-            <p>You have generated {{ $store.getters.totalNumbers }} random numbers</p>
+            <p>You have generated {{ total }} random numbers</p>
         </div>
     </div>
 </template>
 
 <script>
-import Numbers from './Numbers'
+  import Numbers from './Numbers'
+  import { mapGetters } from 'vuex'
 
-export default {
-  name: 'sum',
-  components: {
-    Numbers
-  },
-  computed: {
-    sum () {
-      return this.$store.getters.sum
+  export default {
+    name: 'sum',
+    components: {
+      Numbers
+    },
+    computed: {
+      ...mapGetters({
+          sum: 'sum',
+          total: 'totalNumbers'
+      })
     }
-  }
 }
 </script>
