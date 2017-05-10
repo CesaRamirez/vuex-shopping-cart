@@ -12193,6 +12193,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 
@@ -12240,6 +12241,7 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "numbers", function() { return numbers; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "sum", function() { return sum; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "totalNumbers", function() { return totalNumbers; });
 var numbers = function numbers(state) {
   return state.numbers;
 };
@@ -12248,6 +12250,10 @@ var sum = function sum(state) {
   return state.numbers.reduce(function (a, b) {
     return a + b;
   }, 0);
+};
+
+var totalNumbers = function totalNumbers(state) {
+  return state.numbers.length;
 };
 
 /***/ }),
@@ -12263,7 +12269,6 @@ var sum = function sum(state) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__actions__ = __webpack_require__(34);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__actions___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__actions__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__mutations__ = __webpack_require__(37);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__mutations___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__mutations__);
 
 
 
@@ -12282,9 +12287,16 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vuex
 
 /***/ }),
 /* 37 */
-/***/ (function(module, exports) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "addRandomNumber", function() { return addRandomNumber; });
+var addRandomNumber = function addRandomNumber(state, _ref) {
+  var max = _ref.max,
+      min = _ref.min;
+  return state.numbers.push(Math.floor(Math.random() * (max - min) + min));
+};
 
 /***/ }),
 /* 38 */
@@ -12292,7 +12304,7 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vuex
 
 "use strict";
 /* harmony default export */ __webpack_exports__["a"] = ({
-    numbers: [10, 50, 1]
+    numbers: []
 });
 
 /***/ }),
@@ -29675,7 +29687,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "content"
   }, [_c('numbers'), _vm._v(" "), _c('div', {
     staticClass: "title m-b-md"
-  }, [_vm._v("\n            " + _vm._s(_vm.sum) + "\n        ")])], 1)])
+  }, [_vm._v("\n            " + _vm._s(_vm.sum) + "                \n        ")]), _vm._v(" "), _c('p', [_vm._v("You have generated " + _vm._s(_vm.$store.getters.totalNumbers) + " random numbers")])], 1)])
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
@@ -30050,6 +30062,12 @@ module.exports = function listToStyles (parentId, list) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__AddNumber__ = __webpack_require__(72);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__AddNumber___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__AddNumber__);
+//
+//
+//
+//
 //
 //
 //
@@ -30057,8 +30075,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'numbers',
+  components: {
+    AddNumber: __WEBPACK_IMPORTED_MODULE_0__AddNumber___default.a
+  },
   computed: {
     numbers: function numbers() {
       return this.$store.getters.numbers;
@@ -30067,19 +30089,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 64 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(48)();
-exports.push([module.i, "\nul[data-v-be2fdb48] {\n  color: #636b6f;\n  padding: 0 25px;\n  font-size: 12px;\n  font-weight: 600;\n  letter-spacing: .1rem;\n  text-decoration: none;\n  text-transform: uppercase;\n  list-style-type: none;\n}\nli[data-v-be2fdb48] {\n  display: inline-block;\n  margin: 0 10px;\n}\n", ""]);
-
-/***/ }),
+/* 64 */,
 /* 65 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
 /* styles */
-__webpack_require__(67)
+__webpack_require__(78)
 
 var Component = __webpack_require__(7)(
   /* script */
@@ -30087,7 +30103,7 @@ var Component = __webpack_require__(7)(
   /* template */
   __webpack_require__(66),
   /* scopeId */
-  "data-v-be2fdb48",
+  null,
   /* cssModules */
   null
 )
@@ -30116,11 +30132,9 @@ module.exports = Component.exports
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('ul', {
-    staticClass: "v-list"
-  }, _vm._l((_vm.numbers), function(number) {
+  return _c('div', [(_vm.numbers.length) ? _c('ul', _vm._l((_vm.numbers), function(number) {
     return _c('li', [_vm._v(_vm._s(number))])
-  }))
+  })) : _c('p', [_vm._v("Start adding numbers")]), _vm._v(" "), _c('add-number')], 1)
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
@@ -30131,23 +30145,156 @@ if (false) {
 }
 
 /***/ }),
-/* 67 */
+/* 67 */,
+/* 68 */,
+/* 69 */,
+/* 70 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: 'add-number',
+  methods: {
+    add: function add() {
+      this.$store.commit('addRandomNumber', {
+        min: 1,
+        max: 100
+      });
+    }
+  }
+});
+
+/***/ }),
+/* 71 */,
+/* 72 */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+/* styles */
+__webpack_require__(76)
+
+var Component = __webpack_require__(7)(
+  /* script */
+  __webpack_require__(70),
+  /* template */
+  __webpack_require__(73),
+  /* scopeId */
+  "data-v-2d0bd0dc",
+  /* cssModules */
+  null
+)
+Component.options.__file = "/home/cesar/Code/learn/codecourse/vuex-shopping-cart/resources/assets/js/components/AddNumber.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] AddNumber.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-2d0bd0dc", Component.options)
+  } else {
+    hotAPI.reload("data-v-2d0bd0dc", Component.options)
+  }
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 73 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', [_c('a', {
+    attrs: {
+      "href": "#"
+    },
+    on: {
+      "click": function($event) {
+        $event.preventDefault();
+        _vm.add($event)
+      }
+    }
+  }, [_vm._v("Add random number")])])
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-2d0bd0dc", module.exports)
+  }
+}
+
+/***/ }),
+/* 74 */,
+/* 75 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(48)();
+exports.push([module.i, "\na[data-v-2d0bd0dc] {\n  color: blue;\n  font-weight: 600;\n  text-decoration: none;\n}\n", ""]);
+
+/***/ }),
+/* 76 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(64);
+var content = __webpack_require__(75);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(57)("465d521d", content, false);
+var update = __webpack_require__(57)("534beff4", content, false);
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
  if(!content.locals) {
-   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"id\":\"data-v-be2fdb48\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/sass-loader/lib/loader.js!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Numbers.vue", function() {
-     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"id\":\"data-v-be2fdb48\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/sass-loader/lib/loader.js!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Numbers.vue");
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"id\":\"data-v-2d0bd0dc\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./AddNumber.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"id\":\"data-v-2d0bd0dc\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./AddNumber.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 77 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(48)();
+exports.push([module.i, "\nul {\n  color: #636b6f;\n  padding: 0 25px;\n  font-size: 12px;\n  font-weight: 600;\n  letter-spacing: .1rem;\n  text-decoration: none;\n  text-transform: uppercase;\n  list-style-type: none;\n}\nli {\n  display: inline-block;\n  margin: 0 10px;\n}\np {\n  font-weight: 600;\n  color: #636b6f;\n  padding: 0 25px;\n  font-size: 12px;\n}\n", ""]);
+
+/***/ }),
+/* 78 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(77);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(57)("b27760ee", content, false);
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"id\":\"data-v-be2fdb48\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Numbers.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"id\":\"data-v-be2fdb48\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Numbers.vue");
      if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
      update(newContent);
    });

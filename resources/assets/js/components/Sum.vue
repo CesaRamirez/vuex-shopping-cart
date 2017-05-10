@@ -3,8 +3,9 @@
         <div class="content">
             <numbers></numbers>
             <div class="title m-b-md">
-                {{ sum }}
+                {{ sum }}                
             </div>
+            <p>You have generated {{ $store.getters.totalNumbers }} random numbers</p>
         </div>
     </div>
 </template>
