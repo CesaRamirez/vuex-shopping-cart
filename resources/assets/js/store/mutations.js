@@ -1,1 +1,3 @@
-export const addRandomNumber = (state, { max, min }) => state.numbers.push(Math.floor(Math.random() * (max - min) + min))
+export const addRandomNumber = (state, number) => state
+    .numbers
+    .push(number)

@@ -12229,9 +12229,19 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 /***/ }),
 /* 34 */
-/***/ (function(module, exports) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchNumber", function() { return fetchNumber; });
+var fetchNumber = function fetchNumber(_ref, _ref2) {
+    var commit = _ref.commit;
+    var min = _ref2.min,
+        max = _ref2.max;
+    return axios.get('http://vuex-shopping-cart.dev/api/random/' + min + '/' + max).then(function (response) {
+        commit('addRandomNumber', response.data.number);
+    });
+};
 
 /***/ }),
 /* 35 */
@@ -12292,10 +12302,8 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vuex
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "addRandomNumber", function() { return addRandomNumber; });
-var addRandomNumber = function addRandomNumber(state, _ref) {
-  var max = _ref.max,
-      min = _ref.min;
-  return state.numbers.push(Math.floor(Math.random() * (max - min) + min));
+var addRandomNumber = function addRandomNumber(state, number) {
+    return state.numbers.push(number);
 };
 
 /***/ }),
@@ -30164,7 +30172,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   name: 'add-number',
   methods: {
     add: function add() {
-      this.$store.commit('addRandomNumber', {
+      this.$store.dispatch('fetchNumber', {
         min: 1,
         max: 100
       });

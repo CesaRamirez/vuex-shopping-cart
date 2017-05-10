@@ -5,17 +5,17 @@
 </template>
 
 <script>
-export default {
-  name: 'add-number',
-  methods: {
-    add () {
-      this.$store.commit('addRandomNumber', {
-        min: 1,
-        max: 100
-      })
-    }    
+  export default {
+    name: 'add-number',
+    methods: {
+      add() {
+        this.$store.dispatch('fetchNumber', {
+          min: 1,
+          max: 100
+        })
+      }
+    }
   }
-}
 </script>
 
 <style lang="css" scoped>

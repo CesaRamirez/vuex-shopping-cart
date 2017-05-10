@@ -13,6 +13,10 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
+$router->middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
+});
+
+$router->get('random/{min}/{max}', function ($min, $max) {
+    return response()->json([ 'number' => rand($min, $max) ]);
 });
